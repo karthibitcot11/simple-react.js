@@ -1,43 +1,18 @@
 name: Deploy to Firebase Hosting on PR
-
 on: pull_request
-
 permissions:
   checks: write
   contents: read
   pull-requests: write
-
 jobs:
   build_and_preview:
     if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
       - run: npm ci && npm run build
-      
-      - id: deploy
-        uses: FirebaseExtended/action-hosting-deploy@v0
+      - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_SIMPLE_REACT_BEBF8 }}
           projectId: simple-react-bebf8
-      
-      - name: Debug Outputs
-        run: echo "Preview URL: ${{ steps.deploy.outputs.preview_url }}"
-      
-      - name: Get Firebase Preview URL from GitHub Actions Comment
-        id: get_url
-        run: |
-          COMMENT=$(gh api repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/comments --jq '.[].body' | grep -o 'https://.*\.web\.app' || echo "URL not found")
-          echo "preview_url=$COMMENT" >> $GITHUB_ENV
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      
-      - name: Send Slack Notification
-        uses: slackapi/slack-github-action@v1
-        with:
-          channel-id: C08EC8KUCA2
-          slack-message: "🚀 *Preview Deployment Complete!* \n🔗 Preview URL: ${{ env.preview_url }} \n📌 PR: ${{ github.event.pull_request.html_url }}"
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
