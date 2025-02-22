@@ -17,11 +17,11 @@ jobs:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_SIMPLE_REACT_BEBF8 }}
           projectId: simple-react-bebf8
-          
+      
       - name: Send Slack Notification
         uses: slackapi/slack-github-action@v1
         with:
           channel-id: C08EC8KUCA2
-          slack-message: "🚀 *Preview Deployment Complete!* \n🔗 Preview URL: ${{ steps.deploy.outputs.preview_url }} \n📌 PR: ${{ github.event.pull_request.html_url }}"
+          slack-message: "🚀 *Preview Deployment Complete!* \n🔗 Preview URL: ${{ steps.deploy.outputs.preview_url || 'URL not found' }} \n📌 PR: ${{ github.event.pull_request.html_url }}"
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
