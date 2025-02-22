@@ -21,7 +21,7 @@ jobs:
       - name: Send Slack Notification
         uses: slackapi/slack-github-action@v1
         with:
-          channel-id: 'C08CS83R1A5'
+          channel-id: C08CS83R1A5
           slack-message: "🚀 *Preview Deployment Complete!* \n🔗 Preview URL: ${{ steps.deploy.outputs.preview_url }} \n📌 PR: ${{ github.event.pull_request.html_url }}"
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
