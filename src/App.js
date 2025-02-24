@@ -5,7 +5,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        Github with jira tickect !!!
         <p>
           Github with jira !!!
         </p>
