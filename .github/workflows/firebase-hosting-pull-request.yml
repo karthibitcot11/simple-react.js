@@ -20,7 +20,7 @@
 
 #           ###pull request ###
 
-###pull requet ###
+###pull requet #####
 name: Deploy to Firebase Hosting on PR
 on: pull_request
 permissions:
