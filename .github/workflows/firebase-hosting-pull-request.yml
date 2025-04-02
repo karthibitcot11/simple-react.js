@@ -18,7 +18,6 @@
 #           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_SIMPLE_REACT_BEBF8 }}
 #           projectId: simple-react-bebf8
 
-#           ###pull request ###
 
 ###pull requet ###
 name: Deploy to Firebase Hosting on PR
