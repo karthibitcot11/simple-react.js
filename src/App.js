@@ -8,6 +8,8 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           GIthub with JIra Integeration !!!
+=======
+          Github with jira !!!
         </p>
         <a
           className="App-link"
